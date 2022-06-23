@@ -1,10 +1,12 @@
-# detection_and_remove_periodic_noise
+# detection and remove periodic noise
 
 In this code, with the help of converting the image from spatial domain to frequency domain, we detect the periodic noise and reduce its effectiveness in the image.
 
 # How it works
 
-Here, make 2 nosiy image from original image. We apply 1 periodic nosise to image for make "img1" and 2 periodic nosise to image for make "img2".
+You must Run the HW5_2.m file.
+
+Here, make two noisy images from the original image. We apply one periodic noise to the image for making "img1" and two periodic noises to the image for making "img2".
 
 ```matlab
 clc; clear all; close all;
@@ -26,7 +28,7 @@ img2 = makePeriodicNoise(img1, 4, 4, 2);
 
 ```
 
-Then we change all 3 images from spatical domain to frequency domain.
+Then we change all three images from the spatial domain to the frequency domain.
 
 ```matlab
 %% fourier transform
@@ -42,11 +44,11 @@ subplot(2,3,4),imshow(img_fourier),title('')
 subplot(2,3,5),imshow(img1_fourier),title('')
 subplot(2,3,6),imshow(img2_fourier),title('')
 ```
-Here show these 3 images in spatical domain (first row) and frequency domain (second row).
+These three images are in the spatial domain (first row) and frequency domain (second row).
 
 ![](https://github.com/bardiadelagah/detection_and_remove_periodic_noise/blob/main/img1.jpg)
 
-Now we can find pixels that include periodic noise with sum pixel valuse in rows and columns in frequency domain sepreatly. 
+Now we can find pixels that include periodic noise with sum pixel values in rows and columns in frequency domain separately. 
 
 ```matlab
 %% summation of rows and columns
@@ -63,11 +65,11 @@ subplot(2,3,5),plot(columns1),title('img summation columns1')
 subplot(2,3,6),plot(columns2),title('img summation columns2')
 ```
 
-Here show the sumation of rows and columns. These plots show all pikes in chart (except DC pixel) include periodic noise.
+Here is the summation of rows and columns. These plots show all pikes in the chart (except the DC pixel), including periodic noise.
 
 ![](https://github.com/bardiadelagah/detection_and_remove_periodic_noise/blob/main/img2.jpg)
 
-Now we apply median filtter to pixels that include periodic noise in frequncy domain.
+Now we apply the median filter to pixels that include periodic noise in the frequency domain.
 
 ```matlab
 %% find coordinates of noises
@@ -91,7 +93,7 @@ subplot(2,3,4),imshow(img_fourier),title('fourier orginal img')
 subplot(2,3,5),imshow(img2_fourier),title('noised img fourier befor filter')
 subplot(2,3,6),imshow(img2_fourier_filtered),title('noised img fourier after filter')
 ```
-You can see the final resualt
+You can see the final result.
 
 ![](https://github.com/bardiadelagah/detection_and_remove_periodic_noise/blob/main/img3.jpg)
 
